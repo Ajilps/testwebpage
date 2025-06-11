@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>adkulture - crafting fame, creating impact</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: #0e0f14;
+    }
+
+    #hero {
+
+      color: #9c9c9c;
+      min-height: 100vh;
+      display: flex;
+      background: linear-gradient(135deg, #1a1a1a 50%, #0f0f0f 50%);
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .container1 {
+      margin-top: 10%;
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .logo {
+      font-size: 5rem;
+      color: #8a8a8a;
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+
+    .brand {
+      font-size: 7rem;
+      color: #8a8a8a;
+      text-transform: lowercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+
+    .tagline {
+      font-size: 1.8rem;
+      color: #8a8a8a;
+      letter-spacing: 4px;
+      margin-bottom: 60px;
+      font-weight: 300;
+    }
+
+    .locations {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 120px;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    .services {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 40px;
+    }
+
+    .service {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 1rem;
+      color: #8a8a8a;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .service:hover {
+      color: #ffffff;
+    }
+
+    .pagination {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #444;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .dot.active {
+      background-color: #fff;
+    }
+
+    .dot:hover {
+      background-color: #8a8a8a;
+    }
+
+    /* Table of Contents Styles */
+    .toc-section {
+      width: 100%;
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 40px 20px;
+      background-color: #0e0f14;
+    }
+
+    .toc-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .toc-header {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+
+    .toc-header h2 {
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #4db6ac;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .toc-illustration {
+      grid-column: 1;
+      grid-row: 2;
+      max-width: 300px;
+    }
+
+    .toc-illustration img {
+      width: 100%;
+      height: auto;
+    }
+
+    .toc-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 40px;
+    }
+
+    .toc-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-right: 20px;
+    }
+
+    .toc-content {
+      flex: 1;
+    }
+
+    .toc-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 15px;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .toc-title::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      height: 80%;
+      width: 3px;
+      background-color: #ff7043;
+      transform: translateY(-50%);
+    }
+
+    .toc-description {
+      color: #9c9c9c;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .toc-right {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* section 3 style */
+    .about-section {
+      background: linear-gradient(135deg, #1a1f2e 0%, #2d3748 100%);
+      color: white;
+      padding: 80px 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .content {
+      max-width: 500px;
+    }
+
+    .section-title {
+      font-size: 3.5rem;
+      font-weight: bold;
+      color: #4fd1c7;
+      margin-bottom: 30px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: 40px;
+      line-height: 1.4;
+      color: #e2e8f0;
+    }
+
+    .divider {
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #f6ad55, #ed8936);
+      margin-bottom: 40px;
+      border-radius: 2px;
+    }
+
+    .description {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #a0aec0;
+      margin-bottom: 30px;
+    }
+
+    .highlight-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #cbd5e0;
+    }
+
+    .illustration {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .team-visual {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      background: linear-gradient(135deg, #4fd1c7 0%, #38b2ac 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(79, 209, 199, 0.3);
+    }
+
+    .person {
+      position: absolute;
+      width: 80px;
+      height: 120px;
+      border-radius: 50px 50px 0 0;
+    }
+
+    .person1 {
+      background: #2d3748;
+      top: 50px;
+      left: 80px;
+      transform: rotate(-10deg);
+    }
+
+    .person2 {
+      background: #4a5568;
+      top: 80px;
+      right: 100px;
+      transform: rotate(15deg);
+    }
+
+    .person3 {
+      background: #2d3748;
+      bottom: 60px;
+      left: 120px;
+      transform: rotate(-5deg);
+    }
+
+    .floating-icons {
+      position: absolute;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      background: #68d391;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: white;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .icon1 {
+      top: 20px;
+      right: 20px;
+      animation-delay: 0s;
+    }
+
+    .icon2 {
+      top: 50%;
+      right: -20px;
+      animation-delay: 1s;
+    }
+
+    .icon3 {
+      bottom: 40px;
+      left: -20px;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .about-section {
+        padding: 60px 15px;
+      }
+
+      .container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+      }
+
+      .tagline {
+        font-size: 1.4rem;
+        margin-bottom: 30px;
+      }
+
+      .divider {
+        margin: 0 auto 30px;
+      }
+
+      .description,
+      .highlight-text {
+        font-size: 0.95rem;
+        text-align: left;
+      }
+
+      .team-visual {
+        width: 300px;
+        height: 300px;
+      }
+
+      .person {
+        width: 60px;
+        height: 90px;
+      }
+
+      .person1 {
+        top: 40px;
+        left: 60px;
+      }
+
+      .person2 {
+        top: 60px;
+        right: 80px;
+      }
+
+      .person3 {
+        bottom: 50px;
+        left: 90px;
+      }
+
+      .icon {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+      }
+
+      .team-visual {
+        width: 250px;
+        height: 250px;
+      }
+
+      .person {
+        width: 50px;
+        height: 75px;
+      }
+
+      .person1 {
+        top: 35px;
+        left: 50px;
+      }
+
+      .person2 {
+        top: 50px;
+        right: 65px;
+      }
+
+      .person3 {
+        bottom: 40px;
+        left: 75px;
+      }
+    }
+
+    /* what we do */
+    #whatWeDo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .main-text {
+      font-size: clamp(4rem, 15vw, 12rem);
+      font-weight: 900;
+      color: #4ecdc4;
+      letter-spacing: 0.1em;
+      line-height: 0.9;
+      margin-bottom: 2rem;
+      cursor: pointer;
+    }
+
+    .question-mark {
+      position: absolute;
+      color: #4ecdc4;
+      font-size: 3rem;
+      font-weight: bold;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+    /* section 3 */
+    .services-section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .service-card {
+      position: relative;
+      z-index: 2;
+    }
+
+    .service-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #4ecdc4, #44a08d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .service-description {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #b8c5d6;
+      max-width: 500px;
+    }
+
+    .illustration-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 400px;
+    }
+
+    .main-character {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .character-avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4ecdc4, #44a08d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .character-face {
+      width: 120px;
+      height: 120px;
+      background: #f4c2a1;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .character-hair {
+      position: absolute;
+      top: -20px;
+      left: 10px;
+      right: 10px;
+      height: 60px;
+      background: #2c5f5d;
+      border-radius: 60px 60px 20px 20px;
+    }
+
+    .character-eyes {
+      position: absolute;
+      top: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+    }
+
+    .eye {
+      width: 8px;
+      height: 8px;
+      background: #333;
+      border-radius: 50%;
+    }
+
+    .character-mouth {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 10px;
+      border: 2px solid #333;
+      border-top: none;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .service-icon {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .influencer-icon {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      top: 20px;
+      left: 50px;
+    }
+
+    .celebrity-icon {
+      background: linear-gradient(135deg, #feca57, #ff9ff3);
+      bottom: 40px;
+      left: 20px;
+    }
+
+    .icon-content {
+      font-size: 3rem;
+      color: white;
+    }
+
+    .floating-elements {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .floating-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(78, 205, 196, 0.1);
+      animation: float-random 4s ease-in-out infinite;
+    }
+
+    .circle-1 {
+      width: 100px;
+      height: 100px;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .circle-2 {
+      width: 60px;
+      height: 60px;
+      top: 70%;
+      right: 20%;
+      animation-delay: 1s;
+    }
+
+    .circle-3 {
+      width: 80px;
+      height: 80px;
+      bottom: 20%;
+      left: 15%;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(-50%) translateX(0px);
+      }
+
+      50% {
+        transform: translateY(-50%) translateX(-10px);
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0px) scale(1);
+      }
+
+      50% {
+        transform: translateY(-10px) scale(1.05);
+      }
+    }
+
+    @keyframes float-random {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      33% {
+        transform: translateY(-20px) rotate(5deg);
+      }
+
+      66% {
+        transform: translateY(10px) rotate(-3deg);
+      }
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      .services-section {
+        padding: 40px 15px;
+      }
+
+      .services-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .service-title {
+        font-size: 2rem;
+      }
+
+      .service-description {
+        font-size: 1rem;
+        margin: 0 auto;
+      }
+
+      .illustration-container {
+        min-height: 300px;
+      }
+
+      .main-character {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+      }
+
+      .character-avatar {
+        width: 140px;
+        height: 140px;
+      }
+
+      .character-face {
+        width: 100px;
+        height: 100px;
+      }
+
+      .service-icon {
+        width: 80px;
+        height: 80px;
+      }
+
+      .influencer-icon {
+        top: 10px;
+        left: 20px;
+      }
+
+      .celebrity-icon {
+        bottom: 20px;
+        right: 20px;
+        left: auto;
+      }
+
+      .icon-content {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .service-title {
+        font-size: 1.8rem;
+      }
+
+      .service-description {
+        font-size: 0.95rem;
+      }
+
+      .character-avatar {
+        width: 120px;
+        height: 120px;
+      }
+
+      .character-face {
+        width: 80px;
+        height: 80px;
+      }
+
+      .service-icon {
+        width: 70px;
+        height: 70px;
+      }
+
+      .icon-content {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section id="hero">
+    <div class="container1">
+      <div class="logo"><img src="./icon.svg" width="100px"></div>
+      <div class="brand">adkulture</div>
+      <div class="tagline">crafting fame, creating impact</div>
+
+      <div class="locations">
+        <div class="location">KOCHI</div>
+        <div class="location">CHENNAI</div>
+        <div class="location">HYDERABAD</div>
+        <div class="location">BENGALURU</div>
+      </div>
+
+      <div class="services">
+        <div class="service">Influencer Marketing</div>
+        <div class="service">Celebrity Management</div>
+        <div class="service">Advertising Production</div>
+        <div class="service">Event Management</div>
+      </div>
+    </div>
+  </section>
+  <!-- Table of Contents Section -->
+  <section class="toc-section">
+    <div class="toc-container">
+      <div class="toc-header">
+        <h2>TABLE OF<br>CONTENTS</h2>
+        <div class="toc-illustration">
+          <svg width="300" height="350" viewBox="0 0 300 350">
+            <!-- Paper with checklist -->
+            <rect x="50" y="10" width="120" height="160" fill="#e8f5f5" rx="5" />
+            <!-- Checkmarks -->
+            <line x1="70" y1="40" x2="80" y2="50" stroke="#344055" stroke-width="3" />
+            <line x1="80" y1="50" x2="95" y2="30" stroke="#344055" stroke-width="3" />
+            <line x1="70" y1="70" x2="80" y2="80" stroke="#344055" stroke-width="3" />
+            <line x1="80" y1="80" x2="95" y2="60" stroke="#344055" stroke-width="3" />
+            <line x1="70" y1="100" x2="80" y2="110" stroke="#344055" stroke-width="3" />
+            <line x1="80" y1="110" x2="95" y2="90" stroke="#344055" stroke-width="3" />
+            <!-- Lines for text -->
+            <line x1="110" y1="40" x2="150" y2="40" stroke="#d0d0d0" stroke-width="2" />
+            <line x1="110" y1="70" x2="150" y2="70" stroke="#d0d0d0" stroke-width="2" />
+            <line x1="110" y1="100" x2="150" y2="100" stroke="#d0d0d0" stroke-width="2" />
+            <line x1="70" y1="130" x2="150" y2="130" stroke="#d0d0d0" stroke-width="2" />
+            <line x1="70" y1="150" x2="150" y2="150" stroke="#d0d0d0" stroke-width="2" />
+
+            <!-- Magnifying glass -->
+            <circle cx="150" cy="80" r="40" fill="none" stroke="#344055" stroke-width="8" />
+            <line x1="178" y1="108" x2="200" y2="150" stroke="#344055" stroke-width="8" />
+
+            <!-- Person -->
+            <ellipse cx="290" cy="110" rx="40" ry="30" fill="#1c2541" /> <!-- Head -->
+            <!-- Body -->
+            <path d="M250 140 L330 210 L310 350 L280 350 L290 210 Z" fill="#4db6ac" />
+            <path d="M290 140 L260 210 L220 280 L240 290 L280 210 Z" fill="#1c2541" />
+            <!-- Boots -->
+            <rect x="310" y="350" width="20" height="20" fill="#4db6ac" />
+            <rect x="280" y="350" width="20" height="20" fill="#4db6ac" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="toc-right">
+        <div class="toc-item">
+          <div class="toc-number">01</div>
+          <div class="toc-content">
+            <div class="toc-title">About Us</div>
+            <div class="toc-description">
+              Adkulture is a dynamic creative agency specializing in influencer marketing, advertisement production,
+              celebrity management, and event execution
+            </div>
+          </div>
+        </div>
+
+        <div class="toc-item">
+          <div class="toc-number">02</div>
+          <div class="toc-content">
+            <div class="toc-title">Our Services</div>
+            <div class="toc-description">
+              Our solutions are designed to elevate your brand and connect with audiences in meaningful ways.
+            </div>
+          </div>
+        </div>
+
+        <div class="toc-item">
+          <div class="toc-number">03</div>
+          <div class="toc-content">
+            <div class="toc-title">Mission & Vision</div>
+            <div class="toc-description">
+              To empower brands by creating impactful, story-driven marketing solutions that resonate with audiences and
+              drive real results.
+            </div>
+          </div>
+        </div>
+
+        <div class="toc-item">
+          <div class="toc-number">04</div>
+          <div class="toc-content">
+            <div class="toc-title">Clients</div>
+            <div class="toc-description">
+              We're proud to have partnered with a diverse range of brands, artists, and organisations that trust us for
+              our creativity, commitment, and consistent results.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <div class="container">
+      <div class="content">
+        <h2 class="section-title">About Us</h2>
+        <h3 class="tagline">Always step forward and make a difference for better services</h3>
+        <div class="divider"></div>
+        <p class="description">
+          At AdKulture, we believe in the power of stories, talent, and strategy. As a premier talent and brand
+          management agency, we specialise in celebrity management, influencer marketing, branding, event management,
+          and advertising production — bringing creative visions to life across every platform. From managing renowned
+          faces in entertainment to crafting powerful influencer campaigns and brand identities, AdKulture is where
+          artistry meets influence. Our dedicated team bridges the gap between talent and opportunity, ensuring every
+          collaboration resonates with authenticity and impact.
+        </p>
+        <p class="highlight-text">
+          With a growing presence in Kochi, Chennai, Bengaluru, Hyderabad, and Mumbai, we operate at the heart of
+          India's entertainment and media hubs — enabling us to stay ahead in the fast-evolving world of branding and
+          promotions. Whether you're a brand looking to make a bold statement or a talent aiming to amplify your reach,
+          AdKulture is your trusted partner in turning creativity into meaningful connections.
+        </p>
+      </div>
+      <!-- <div class="illustration">
+        <div class="team-visual">
+          <div class="person person1"></div>
+          <div class="person person2"></div>
+          <div class="person person3"></div>
+          <div class="floating-icons icon1">
+            <div class="icon">△</div>
+          </div>
+          <div class="floating-icons icon2">
+            <div class="icon">📱</div>
+          </div>
+          <div class="floating-icons icon3">
+            <div class="icon">💚</div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- what we do -->
+  <section id="whatWeDo">
+    <div class="container">
+      <div class="main-text" onclick="showAnswer()">
+        WHAT<br>WE DO?
+      </div>
+    </div>
+
+    <div class="question-mark q1" onclick="showAnswer()">?</div>
+    <div class="question-mark q2" onclick="showAnswer()">?</div>
+    <div class="question-mark q3" onclick="showAnswer()">?</div>
+
+    <div class="ghost-figure" onclick="showAnswer()">
+      <div class="ghost-body">
+        <div class="ghost-bottom"></div>
+        <div class="ghost-face">
+          <div class="ghost-eyes">
+            <div class="ghost-eye"></div>
+            <div class="ghost-eye"></div>
+          </div>
+          <div class="ghost-mouth"></div>
+        </div>
+        <div class="ghost-arms">
+          <div class="ghost-arm left"></div>
+          <div class="ghost-arm right"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="answer-panel" id="answerPanel">
+      <div class="answer-text">
+        We create amazing digital experiences that captivate and inspire! Our team specializes in innovative web
+        development, stunning design, and cutting-edge solutions that bring your vision to life.
+        <br><br>
+        Click anywhere to discover more about our magical process! ✨
+      </div>
+      <button class="close-btn" onclick="closeAnswer()">Got it!</button>
+    </div> -->
+  </section>
+
+  <!-- section 3 -->
+  <section class="services-section">
+    <div class="floating-elements">
+      <div class="floating-circle circle-1"></div>
+      <div class="floating-circle circle-2"></div>
+      <div class="floating-circle circle-3"></div>
+    </div>
+
+    <div class="services-container">
+      <!-- Influencer Marketing -->
+      <div class="service-card">
+        <h2 class="service-title">Influencer marketing</h2>
+        <p class="service-description">
+          AdKulture leverages the power of influencer marketing to connect brands with the right audience through
+          trusted voices. By collaborating with influencers across various niches—lifestyle, fashion, tech, and
+          more—ADKulture crafts authentic, engaging campaigns that drive awareness, trust, and conversions.
+        </p>
+      </div>
+
+      <div class="illustration-container">
+        <div class="service-icon influencer-icon">
+          <div class="icon-content">📱</div>
+        </div>
+        <div class="main-character">
+          <div class="character-avatar">
+            <div class="character-face">
+              <div class="character-hair"></div>
+              <div class="character-eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+              </div>
+              <div class="character-mouth"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-container" style="margin-top: 80px;">
+      <!-- Celebrity Management -->
+      <div class="illustration-container">
+        <div class="service-icon celebrity-icon">
+          <div class="icon-content">⭐</div>
+        </div>
+        <div class="main-character">
+          <div class="character-avatar">
+            <div class="character-face">
+              <div class="character-hair"></div>
+              <div class="character-eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+              </div>
+              <div class="character-mouth"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <h2 class="service-title">Celebrity Management</h2>
+        <p class="service-description">
+          AdKulture specialises in seamless celebrity management, handling everything from endorsements and appearances
+          to brand collaborations and event bookings. With strong industry networks and strategic planning, we connect
+          brands and events with the right celebrities to maximise reach, impact, and audience engagement.
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- section 4 -->
+  <section class="services-section">
+    <div class="floating-elements">
+      <div class="floating-circle circle-1"></div>
+      <div class="floating-circle circle-2"></div>
+      <div class="floating-circle circle-3"></div>
+    </div>
+
+    <div class="services-container">
+      <!-- Influencer Marketing -->
+      <div class="service-card">
+        <h2 class="service-title">Influencer marketing</h2>
+        <p class="service-description">
+          AdKulture leverages the power of influencer marketing to connect brands with the right audience through
+          trusted voices. By collaborating with influencers across various niches—lifestyle, fashion, tech, and
+          more—ADKulture crafts authentic, engaging campaigns that drive awareness, trust, and conversions.
+        </p>
+      </div>
+
+      <div class="illustration-container">
+        <div class="service-icon influencer-icon">
+          <div class="icon-content">📱</div>
+        </div>
+        <div class="main-character">
+          <div class="character-avatar">
+            <div class="character-face">
+              <div class="character-hair"></div>
+              <div class="character-eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+              </div>
+              <div class="character-mouth"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-container" style="margin-top: 80px;">
+      <!-- Celebrity Management -->
+      <div class="illustration-container">
+        <div class="service-icon celebrity-icon">
+          <div class="icon-content">⭐</div>
+        </div>
+        <div class="main-character">
+          <div class="character-avatar">
+            <div class="character-face">
+              <div class="character-hair"></div>
+              <div class="character-eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+              </div>
+              <div class="character-mouth"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <h2 class="service-title">Celebrity Management</h2>
+        <p class="service-description">
+          AdKulture specialises in seamless celebrity management, handling everything from endorsements and appearances
+          to brand collaborations and event bookings. With strong industry networks and strategic planning, we connect
+          brands and events with the right celebrities to maximise reach, impact, and audience engagement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <div class="pagination">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <script>
+
+
+    // Simple pagination functionality
+    const dots = document.querySelectorAll('.dot');
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        // Remove active class from all dots
+        dots.forEach(d => d.classList.remove('active'));
+
+        // Add active class to clicked dot
+        dot.classList.add('active');
+
+        // Here you would typically change content
+        // For demo purposes, just changing background slightly
+        const hue = 180 + (index * 10);
+        document.body.style.background = `linear-gradient(135deg, hsl(${hue}, 5%, 10%) 50%, hsl(${hue}, 5%, 5%) 50%)`;
+      });
+    });
+  </script>
+</body>
+
+</html>
