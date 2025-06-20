@@ -4,8 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adkulture - Agency (Full Site)</title>
-
+  <title>Adkulture - Elevating Brands</title>
   <style>
     /*
     ==========================================================================
@@ -271,16 +270,22 @@
       top: 35%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 300px;
-      transition: all 0.6s ease;
+      width: 270px;
+      transition: all 0.6s cubic-bezier(0.56, 0.29, 0.45, 0.8);
       z-index: 1000;
+      border-radius: 5%;
     }
 
     .logo.scrolled {
-      top: 1px;
+      top: 7px;
       left: 6px;
       transform: translate(0, 0);
-      width: 100px;
+      width: 70px;
+      background: transparent;
+      /* background: linear-gradient(135deg, #60c0e6, #5eb1e9); */
+      /* background-color: linear-gradient(135deg, #60c0e6, #5eb1e9); */
+      background-color: #5fdff510;
+      box-shadow: -10px -10px 1000px #5eb1e981;
       z-index: 4000;
     }
 
@@ -337,7 +342,9 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(
+          /* auto-fit */
+          2, minmax(200px, 1fr));
       gap: 40px;
       margin-bottom: 60px;
     }
@@ -460,7 +467,8 @@
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      /* Adjusted from 350px for 4 cards */
       gap: 30px;
       margin-top: 50px;
     }
@@ -509,11 +517,14 @@
       margin-bottom: 15px;
     }
 
+    /* UNUSED STYLE: .service-description is not in the new HTML. */
+    /*
     .service-description {
       color: var(--font-color-subtle);
       line-height: 1.7;
       margin-bottom: 25px;
     }
+    */
 
     .service-features {
       list-style: none;
@@ -642,8 +653,8 @@
 
     #timeline .timeline-content {
       position: relative;
-      width: 45%;
-      padding: 40px;
+      width: 44%;
+      padding: 20px 60px;
       background: linear-gradient(135deg, #000000, var(--secondary-color));
       border-radius: 15px;
       border: 1px solid var(--primary-color);
@@ -841,6 +852,8 @@
       background-color: var(--bg-color-dark);
     }
 
+    /* REDUNDANT STYLES: These are already handled by the general .section-header component styles. */
+    /* 
     #clients .section-title h2 {
       font-size: 3rem;
       font-weight: bold;
@@ -858,6 +871,7 @@
       margin: 0 auto;
       line-height: 1.6;
     }
+ */
 
     #clients .banner-container {
       position: relative;
@@ -920,7 +934,7 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(90deg, transparent, rgba(0, 151, 178, 0.2), transparent);
-      animation: shimmer 2s infinite;
+      animation: shimmer 20s infinite;
     }
 
     #clients .banner-item .content {
@@ -1158,7 +1172,9 @@
     .stagger-animation:nth-child(4) {
       transition-delay: 0.3s;
     }
-
+  </style>
+  <!-- /* @media 768 */ -->
+  <style>
     @media (max-width: 768px) {
       .navbar {
         padding: 1rem;
@@ -1199,6 +1215,12 @@
 
       #brandName img {
         width: 80%;
+      }
+
+      .about-grid {
+        grid-template-columns: repeat(
+            /* auto-fit */
+            1, minmax(200px, 1fr));
       }
 
       .page-section {
@@ -1289,9 +1311,64 @@
       }
     }
   </style>
+
+  <style>
+    /* ---- reset ---- */
+
+
+
+    /* ---- particles.js container ---- */
+    .particle-section {
+      /* position: absolute; */
+      /* width: 100%; */
+      /* height: 100%; */
+      /* background-color: #232741; */
+      /* The background-image line has been removed */
+      /* background-repeat: no-repeat;
+      background-size: 20%;
+      background-position: 50% 50%; */
+    }
+
+    .particle-section canvas {
+      display: block;
+      vertical-align: bottom;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  </style>
+
+  <style>
+    body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      /* Prevent default scrolling */
+      /* font-family: Arial, sans-serif; */
+    }
+
+    #scroll-container {
+      position: fixed;
+      top: 0%;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+    }
+  </style>
+
 </head>
 
 <body>
+
+
+  <!-- <div class="scroll-indicator">
+
+        <div class="scroll-progress" id="scrollProgress"></div>
+      </div> -->
+
+  <a href="#home"><button class="back-to-top" id="backToTop" aria-label="Back to Top"></button></a>
 
   <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -1300,646 +1377,845 @@
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#timeline">Timeline</a></li>
-        <li><a href="#theProcess">Process</a></li>
-        <li><a href="#clients">Marketing</a></li>
-        <li><a href="#celebrity">Celebrities</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
+        <!-- <li><a href="#theProcess">Process</a></li> -->
+        <!-- <li><a href="#clients">Marketing</a></li> -->
+        <!-- <li><a href="#celebrity">Celebrities</a></li> -->
+        <!-- <li><a href="#testimonials">Testimonials</a></li> -->
         <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></div>
     </div>
   </nav>
+  <a href="#home">
+    <!-- Placeholder SVG for Logo -->
+    <img src="./newIcon.svg" class="logo " id="logo" width="300" alt="">
+  </a>
+  <div id="scroll-container">
+    <div class="scroll-content">
 
-  <button class="back-to-top" id="backToTop" aria-label="Back to Top"></button>
-  <div class="scroll-indicator">
-    <div class="scroll-progress" id="scrollProgress"></div>
+      <main class="hero " id="home">
+        <div class="triangle-wrapper particle-section ">
+
+        </div>
+
+        <div id="brandName" class="particle-section"><img src="./newBrandName.svg" alt="Adkulture Brand Name">
+        </div>
+
+
+    </div>
+    </main>
+
+
+
+
+    <section id="about" class="page-section reveal-animation  particle-section">
+      <div class="container">
+        <div class="section-header reveal-animation">
+          <h2 class="section-title">About Us</h2>
+          <p class="section-subtitle">Always step forward and make a difference for better services.</p>
+        </div>
+        <div class="company-intro reveal-animation">
+          <p class="intro-text">At <strong>Adkulture</strong>, we believe in the power of stories, stars, and
+            strategy. We
+            specialise in bringing creative visions to life across every platform.</p>
+        </div>
+        <div class="about-grid">
+          <div class="card reveal-animation stagger-animation">
+            <div class="card-icon">🎭</div>
+            <h3 class="card-title">Celebrity Management</h3>
+            <p class="card-content">Bridging the gap between talent and opportunity with authentic collaborations.</p>
+          </div>
+          <div class="card reveal-animation stagger-animation">
+            <div class="card-icon">📱</div>
+            <h3 class="card-title">Influencer Marketing</h3>
+            <p class="card-content">Crafting powerful campaigns that resonate with authenticity.</p>
+          </div>
+          <div class="card reveal-animation stagger-animation">
+            <div class="card-icon">🎨</div>
+            <h3 class="card-title">Brand Identity</h3>
+            <p class="card-content">Creating bold brand identities that make statements and amplify reach.</p>
+          </div>
+          <div class="card reveal-animation stagger-animation">
+            <div class="card-icon">🎪</div>
+            <h3 class="card-title">Event Management</h3>
+            <p class="card-content">Bringing creative visions to life through expertly managed events.</p>
+          </div>
+        </div>
+        <div class="stats-section reveal-animation">
+          <div class="stat-item"><span class="stat-number" data-target="5">0</span><span
+              class="stat-label">Cities</span>
+          </div>
+          <div class="stat-item"><span class="stat-number" data-target="200">0</span><span
+              class="stat-label">Campaigns</span></div>
+          <div class="stat-item"><span class="stat-number" data-target="50">0</span><span
+              class="stat-label">Celebrities</span></div>
+          <div class="stat-item"><span class="stat-number" data-target="100">0</span><span class="stat-label">Brands
+              Served</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="page-section reveal-animation particle-section">
+      <div class="container">
+        <div class="section-header reveal-animation">
+          <h2 class="section-title">AdKulture Services</h2>
+          <p class="section-subtitle">We specialize in influencer marketing, celebrity management, advertisement
+            production, and event management to elevate your brand's presence.</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card reveal-animation stagger-animation">
+            <div class="service-icon">🌟</div>
+            <h3 class="service-title">Influencer Marketing</h3>
+            <ul class="service-features">
+              <li>Lifestyle & Fashion</li>
+              <li>Tech & Gaming</li>
+              <li>Authentic Campaigns</li>
+            </ul><button class="service-btn" data-service="influencer">Learn More</button>
+          </div>
+          <div class="service-card reveal-animation stagger-animation">
+            <div class="service-icon">⭐</div>
+            <h3 class="service-title">Celebrity Management</h3>
+            <ul class="service-features">
+              <li>Endorsements</li>
+              <li>Collaborations</li>
+              <li>Event Appearances</li>
+            </ul><button class="service-btn" data-service="celebrity">Learn More</button>
+          </div>
+          <div class="service-card reveal-animation stagger-animation">
+            <div class="service-icon">🎬</div>
+            <h3 class="service-title">Ad Production</h3>
+            <ul class="service-features">
+              <li>TV & Digital Ads</li>
+              <li>Brand Films</li>
+              <li>Concept & Scripting</li>
+            </ul><button class="service-btn" data-service="production">Learn More</button>
+          </div>
+          <div class="service-card reveal-animation stagger-animation">
+            <div class="service-icon">🎉</div>
+            <h3 class="service-title">Event Management</h3>
+            <ul class="service-features">
+              <li>Corporate Events</li>
+              <li>Concerts & Shows</li>
+              <li>Venue & Artist Booking</li>
+            </ul><button class="service-btn" data-service="events">Learn More</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline" class="page-section reveal-animation particle-section">
+      <div class="container">
+        <div class="timeline-header reveal-animation">
+          <h2 class="timeline-title">OUR<br>TIMELINE</h2>
+          <p class="timeline-subtitle">At Adkulture, we follow a structured timeline process to ensure smooth
+            execution
+            and timely delivery.</p>
+        </div>
+        <div class="timeline-wrapper">
+          <div class="timeline-line"></div>
+          <div class="timeline-item reveal-animation">
+            <div class="timeline-content">
+              <h3>Brainstorm</h3>
+              <p>Sparking fresh ideas that align with your brand vision</p>
+              <p class="description">Creative ideation and conceptualization phase</p>
+            </div>
+            <div class="timeline-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20.92 15.63a9 9 0 0 0-9.27-8.29 8.97 8.97 0 0 0-7.31 4.24"></path>
+                <path d="M3.08 15.63a9 9 0 0 1 9.27-8.29 8.97 8.97 0 0 1 7.31 4.24"></path>
+                <path d="M12 2v2.5"></path>
+                <path d="m4.22 4.22 1.77 1.77"></path>
+                <path d="M18.01 5.99 16.24 4.22"></path>
+              </svg></div>
+          </div>
+          <div class="timeline-item reveal-animation">
+            <div class="timeline-content">
+              <h3>Content Planning</h3>
+              <p>Structuring creative concepts into actionable plans</p>
+              <p class="description">Detailed content strategy and planning phase</p>
+            </div>
+            <div class="timeline-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              </svg></div>
+          </div>
+          <div class="timeline-item reveal-animation">
+            <div class="timeline-content">
+              <h3>Strategy</h3>
+              <p>Crafting a focused roadmap to reach your goals effectively</p>
+              <p class="description">Setting out future objectives and strategies for achieving them.</p>
+            </div>
+            <div class="timeline-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                </polygon>
+              </svg></div>
+          </div>
+          <div class="timeline-item reveal-animation">
+            <div class="timeline-content">
+              <h3>Launch & Live</h3>
+              <p>Bringing ideas to life with precision and impact</p>
+              <p class="description">Execution and delivery phase with continuous monitoring</p>
+            </div>
+            <div class="timeline-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="theProcess" class="page-section reveal-animation particle-section">
+      <div class="container">
+        <div class="process-header reveal-animation">
+          <div class="accent-line"></div>
+          <h2 class="process-title">Our Influencer<br>Marketing Process</h2>
+          <p class="process-description">We begin by understanding brand goals, then identify suitable influencers.
+            After
+            finalizing collaborations, we develop content briefs, manage execution, and track performance to ensure
+            impactful campaigns.</p>
+        </div>
+        <div class="process-steps">
+          <div class="process-step reveal-animation" data-step="1">
+            <div class="step-circle">
+              <div class="step-number">1</div>
+              <div class="step-label">INFLUENCER<br>SELECTION</div>
+            </div>
+            <div class="connecting-line"></div>
+            <div class="step-content">
+              <h3 class="step-title">Choose the right influencers.</h3>
+              <p class="step-description">We analyze influencers to ensure they align with your brand and have genuine
+                audience engagement.</p>
+            </div>
+          </div>
+          <div class="process-step reveal-animation" data-step="2">
+            <div class="step-circle">
+              <div class="step-number">2</div>
+              <div class="step-label">CONTENT<br>PLANNING</div>
+            </div>
+            <div class="connecting-line"></div>
+            <div class="step-content">
+              <h3 class="step-title">Align creative concepts.</h3>
+              <p class="step-description">Develop content strategies that maintain brand consistency while leveraging
+                the
+                influencer's unique voice.</p>
+            </div>
+          </div>
+          <div class="process-step reveal-animation" data-step="3">
+            <div class="step-circle">
+              <div class="step-number">3</div>
+              <div class="step-label">CAMPAIGN<br>EXECUTION</div>
+            </div>
+            <div class="connecting-line"></div>
+            <div class="step-content">
+              <h3 class="step-title">Manage timely posting.</h3>
+              <p class="step-description">Oversee the entire campaign, ensuring content is delivered on schedule and
+                meets
+                all brand guidelines.</p>
+            </div>
+          </div>
+          <div class="process-step reveal-animation" data-step="4">
+            <div class="step-circle">
+              <div class="step-number">4</div>
+              <div class="step-label">PERFORMANCE<br>TRACKING</div>
+            </div>
+            <div class="step-content">
+              <h3 class="step-title">Analyse reach and ROI.</h3>
+              <p class="step-description">Provide detailed analytics to measure campaign effectiveness and identify
+                opportunities for future optimization.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="clients" class="page-section reveal-animation particle-section">
+      <div class="container">
+        <div class="section-header reveal-animation">
+          <h2 class="section-title">SUCCESS MARKETING</h2>
+          <p class="section-subtitle">Driving growth through strategic marketing solutions and innovative campaigns
+            that
+            deliver measurable results.</p>
+        </div>
+        <div class="banner-container reveal-animation">
+          <div class="banner-row">
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">📈</div>
+                <div class="title">Digital Growth</div>
+                <div class="subtitle">Scale your business online</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🎯</div>
+                <div class="title">Target Marketing</div>
+                <div class="subtitle">Reach the right audience</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">💡</div>
+                <div class="title">Creative Campaigns</div>
+                <div class="subtitle">Stand out from competition</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🚀</div>
+                <div class="title">Brand Launch</div>
+                <div class="subtitle">Launch with impact</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">📊</div>
+                <div class="title">Data Analytics</div>
+                <div class="subtitle">Measure success precisely</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">📈</div>
+                <div class="title">Digital Growth</div>
+                <div class="subtitle">Scale your business online</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🎯</div>
+                <div class="title">Target Marketing</div>
+                <div class="subtitle">Reach the right audience</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">💡</div>
+                <div class="title">Creative Campaigns</div>
+                <div class="subtitle">Stand out from competition</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🚀</div>
+                <div class="title">Brand Launch</div>
+                <div class="subtitle">Launch with impact</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">📊</div>
+                <div class="title">Data Analytics</div>
+                <div class="subtitle">Measure success precisely</div>
+              </div>
+            </div>
+          </div>
+          <div class="banner-row">
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">💼</div>
+                <div class="title">B2B Solutions</div>
+                <div class="subtitle">Business growth strategies</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">📱</div>
+                <div class="title">Social Media</div>
+                <div class="subtitle">Engage your community</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🎨</div>
+                <div class="title">Brand Design</div>
+                <div class="subtitle">Visual identity creation</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🔍</div>
+                <div class="title">SEO Optimization</div>
+                <div class="subtitle">Improve search rankings</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">✉️</div>
+                <div class="title">Email Marketing</div>
+                <div class="subtitle">Direct customer connection</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">💼</div>
+                <div class="title">B2B Solutions</div>
+                <div class="subtitle">Business growth strategies</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">📱</div>
+                <div class="title">Social Media</div>
+                <div class="subtitle">Engage your community</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🎨</div>
+                <div class="title">Brand Design</div>
+                <div class="subtitle">Visual identity creation</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🔍</div>
+                <div class="title">SEO Optimization</div>
+                <div class="subtitle">Improve search rankings</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">✉️</div>
+                <div class="title">Email Marketing</div>
+                <div class="subtitle">Direct customer connection</div>
+              </div>
+            </div>
+          </div>
+          <div class="banner-row">
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🌟</div>
+                <div class="title">Premium Strategy</div>
+                <div class="subtitle">Luxury brand positioning</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🎬</div>
+                <div class="title">Video Content</div>
+                <div class="subtitle">Engaging visual stories</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🤝</div>
+                <div class="title">Partnership</div>
+                <div class="subtitle">Strategic collaborations</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">💰</div>
+                <div class="title">ROI Focus</div>
+                <div class="subtitle">Maximize your investment</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🏆</div>
+                <div class="title">Success Stories</div>
+                <div class="subtitle">Proven track record</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🌟</div>
+                <div class="title">Premium Strategy</div>
+                <div class="subtitle">Luxury brand positioning</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🎬</div>
+                <div class="title">Video Content</div>
+                <div class="subtitle">Engaging visual stories</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🤝</div>
+                <div class="title">Partnership</div>
+                <div class="subtitle">Strategic collaborations</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">💰</div>
+                <div class="title">ROI Focus</div>
+                <div class="subtitle">Maximize your investment</div>
+              </div>
+            </div>
+            <div class="banner-item">
+              <div class="content">
+                <div class="icon">🏆</div>
+                <div class="title">Success Stories</div>
+                <div class="subtitle">Proven track record</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="celebrity" class="page-section reveal-animation particle-section">
+      <div class="container">
+        <div class="section-header reveal-animation">
+          <h2 class="section-title">Celebrity Collaboration</h2>
+          <p class="section-subtitle">Partnering with world-renowned celebrities and influencers to create
+            extraordinary
+            experiences and reach global audiences.</p>
+        </div>
+        <div class="banner-container">
+          <div class="banner-row">
+            <div class="banner-content" id="row1"></div>
+          </div>
+          <div class="banner-row">
+            <div class="banner-content" id="row2"></div>
+          </div>
+          <div class="banner-row">
+            <div class="banner-content" id="row3"></div>
+          </div>
+        </div>
+        <div class="collaboration-stats reveal-animation">
+          <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label">Celebrity
+              Partners</span>
+          </div>
+          <div class="stat-item"><span class="stat-number">2.5B</span><span class="stat-label">Combined Reach</span>
+          </div>
+          <div class="stat-item"><span class="stat-number">150+</span><span class="stat-label">Campaigns</span></div>
+          <div class="stat-item"><span class="stat-number">95%</span><span class="stat-label">Success Rate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="page-section reveal-animation particle-section">
+      <div class="container">
+        <div class="section-header reveal-animation">
+          <h2 class="section-title">What Our Clients Say</h2>
+          <p class="section-subtitle">Don't just take our word for it - hear from our satisfied clients.</p>
+        </div>
+        <div class="testimonial-card reveal-animation slide-from-left">
+          <p class="testimonial-text">"AdKulture's influencer strategy transformed our brand reach. Their authentic
+            collaborations increased our engagement by 400%."</p>
+          <div class="testimonial-author">Priya Sharma</div>
+          <div class="testimonial-role">Marketing Director, Fashion Forward</div>
+        </div>
+        <div class="testimonial-card reveal-animation slide-from-right">
+          <p class="testimonial-text">"The celebrity management team delivered exceptional results. Their industry
+            connections made our product launch a huge success."</p>
+          <div class="testimonial-author">Rajesh Kumar</div>
+          <div class="testimonial-role">Brand Manager, TechInnovate</div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact" class="page-section particle-section">
+      <div class="container">
+        <div class="section-header reveal-animation">
+          <h2 class="section-title">Get In Touch</h2>
+          <p class="section-subtitle">We'd love to hear from you. Let's create something amazing together.</p>
+          <br>
+          <a href="mailto:contact@adkulture.com" class="service-btn">contact@adkulture.com</a>
+        </div>
+      </div>
+    </footer>
   </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-  <main class="hero" id="home">
-    <div class="triangle-wrapper"></div>
-    <img class="logo" id="logo" src="./newIcon.svg" alt="Adkulture Logo Icon">
-    <div id="brandName"><img src="./newBrandName.svg" alt="Adkulture Brand Name"></div>
-  </main>
-
-  <section id="about" class="page-section">
-    <div class="container">
-      <div class="section-header reveal-animation">
-        <h2 class="section-title">About Us</h2>
-        <p class="section-subtitle">Always step forward and make a difference for better services.</p>
-      </div>
-      <div class="company-intro reveal-animation">
-        <p class="intro-text">At <strong>Adkulture</strong>, we believe in the power of stories, stars, and strategy. We
-          specialise in bringing creative visions to life across every platform.</p>
-      </div>
-      <div class="about-grid">
-        <div class="card reveal-animation stagger-animation">
-          <div class="card-icon">🎭</div>
-          <h3 class="card-title">Celebrity Management</h3>
-          <p class="card-content">Bridging the gap between talent and opportunity with authentic collaborations.</p>
-        </div>
-        <div class="card reveal-animation stagger-animation">
-          <div class="card-icon">📱</div>
-          <h3 class="card-title">Influencer Marketing</h3>
-          <p class="card-content">Crafting powerful campaigns that resonate with authenticity.</p>
-        </div>
-        <div class="card reveal-animation stagger-animation">
-          <div class="card-icon">🎨</div>
-          <h3 class="card-title">Brand Identity</h3>
-          <p class="card-content">Creating bold brand identities that make statements and amplify reach.</p>
-        </div>
-        <div class="card reveal-animation stagger-animation">
-          <div class="card-icon">🎪</div>
-          <h3 class="card-title">Event Management</h3>
-          <p class="card-content">Bringing creative visions to life through expertly managed events.</p>
-        </div>
-      </div>
-      <div class="stats-section reveal-animation">
-        <div class="stat-item"><span class="stat-number" data-target="5">0</span><span class="stat-label">Cities</span>
-        </div>
-        <div class="stat-item"><span class="stat-number" data-target="200">0</span><span
-            class="stat-label">Campaigns</span></div>
-        <div class="stat-item"><span class="stat-number" data-target="50">0</span><span
-            class="stat-label">Celebrities</span></div>
-        <div class="stat-item"><span class="stat-number" data-target="100">0</span><span class="stat-label">Brands
-            Served</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="services" class="page-section">
-    <div class="container">
-      <div class="section-header reveal-animation">
-        <h2 class="section-title">AdKulture Services</h2>
-        <p class="section-subtitle">We specialize in influencer marketing, celebrity management, advertisement
-          production, and event management to elevate your brand's presence.</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card reveal-animation stagger-animation">
-          <div class="service-icon">🌟</div>
-          <h3 class="service-title">Influencer Marketing</h3>
-          <ul class="service-features">
-            <li>Lifestyle & Fashion</li>
-            <li>Tech & Gaming</li>
-            <li>Authentic Campaigns</li>
-          </ul><button class="service-btn" data-service="influencer">Learn More</button>
-        </div>
-        <div class="service-card reveal-animation stagger-animation">
-          <div class="service-icon">⭐</div>
-          <h3 class="service-title">Celebrity Management</h3>
-          <ul class="service-features">
-            <li>Endorsements</li>
-            <li>Collaborations</li>
-            <li>Event Appearances</li>
-          </ul><button class="service-btn" data-service="celebrity">Learn More</button>
-        </div>
-        <div class="service-card reveal-animation stagger-animation">
-          <div class="service-icon">🎬</div>
-          <h3 class="service-title">Ad Production</h3>
-          <ul class="service-features">
-            <li>TV & Digital Ads</li>
-            <li>Brand Films</li>
-            <li>Concept & Scripting</li>
-          </ul><button class="service-btn" data-service="production">Learn More</button>
-        </div>
-        <div class="service-card reveal-animation stagger-animation">
-          <div class="service-icon">🎉</div>
-          <h3 class="service-title">Event Management</h3>
-          <ul class="service-features">
-            <li>Corporate Events</li>
-            <li>Concerts & Shows</li>
-            <li>Venue & Artist Booking</li>
-          </ul><button class="service-btn" data-service="events">Learn More</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="timeline" class="page-section">
-    <div class="container">
-      <div class="timeline-header reveal-animation">
-        <h2 class="timeline-title">OUR<br>TIMELINE</h2>
-        <p class="timeline-subtitle">At Adkulture, we follow a structured timeline process to ensure smooth execution
-          and timely delivery.</p>
-      </div>
-      <div class="timeline-wrapper">
-        <div class="timeline-line"></div>
-        <div class="timeline-item reveal-animation">
-          <div class="timeline-content">
-            <h3>Brainstorm</h3>
-            <p>Sparking fresh ideas that align with your brand vision</p>
-            <p class="description">Creative ideation and conceptualization phase</p>
-          </div>
-          <div class="timeline-icon"><svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-              <circle cx="12" cy="12" r="3" fill="currentColor" />
-            </svg></div>
-        </div>
-        <div class="timeline-item reveal-animation">
-          <div class="timeline-content">
-            <h3>Content Planning</h3>
-            <p>Structuring creative concepts into actionable plans</p>
-            <p class="description">Detailed content strategy and planning phase</p>
-          </div>
-          <div class="timeline-icon"><svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
-            </svg></div>
-        </div>
-        <div class="timeline-item reveal-animation">
-          <div class="timeline-content">
-            <h3>Strategy</h3>
-            <p>Crafting a focused roadmap to reach your goals effectively</p>
-            <p class="description">Setting out future objectives and strategies for achieving them.</p>
-          </div>
-          <div class="timeline-icon"><svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg></div>
-        </div>
-        <div class="timeline-item reveal-animation">
-          <div class="timeline-content">
-            <h3>Launch & Live</h3>
-            <p>Bringing ideas to life with precision and impact</p>
-            <p class="description">Execution and delivery phase with continuous monitoring</p>
-          </div>
-          <div class="timeline-icon"><svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              <path d="M8 12l2 2 4-4" stroke="currentColor" stroke-width="2" fill="none" />
-            </svg></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="theProcess" class="page-section">
-    <div class="container">
-      <div class="process-header reveal-animation">
-        <div class="accent-line"></div>
-        <h2 class="process-title">Our Influencer<br>Marketing Process</h2>
-        <p class="process-description">We begin by understanding brand goals, then identify suitable influencers. After
-          finalizing collaborations, we develop content briefs, manage execution, and track performance to ensure
-          impactful campaigns.</p>
-      </div>
-      <div class="process-steps">
-        <div class="process-step reveal-animation" data-step="1">
-          <div class="step-circle">
-            <div class="step-number">1</div>
-            <div class="step-label">INFLUENCER<br>SELECTION</div>
-          </div>
-          <div class="connecting-line"></div>
-          <div class="step-content">
-            <h3 class="step-title">Choose the right influencers.</h3>
-            <p class="step-description">We analyze influencers to ensure they align with your brand and have genuine
-              audience engagement.</p>
-          </div>
-        </div>
-        <div class="process-step reveal-animation" data-step="2">
-          <div class="step-circle">
-            <div class="step-number">2</div>
-            <div class="step-label">CONTENT<br>PLANNING</div>
-          </div>
-          <div class="connecting-line"></div>
-          <div class="step-content">
-            <h3 class="step-title">Align creative concepts.</h3>
-            <p class="step-description">Develop content strategies that maintain brand consistency while leveraging the
-              influencer's unique voice.</p>
-          </div>
-        </div>
-        <div class="process-step reveal-animation" data-step="3">
-          <div class="step-circle">
-            <div class="step-number">3</div>
-            <div class="step-label">CAMPAIGN<br>EXECUTION</div>
-          </div>
-          <div class="connecting-line"></div>
-          <div class="step-content">
-            <h3 class="step-title">Manage timely posting.</h3>
-            <p class="step-description">Oversee the entire campaign, ensuring content is delivered on schedule and meets
-              all brand guidelines.</p>
-          </div>
-        </div>
-        <div class="process-step reveal-animation" data-step="4">
-          <div class="step-circle">
-            <div class="step-number">4</div>
-            <div class="step-label">PERFORMANCE<br>TRACKING</div>
-          </div>
-          <div class="step-content">
-            <h3 class="step-title">Analyse reach and ROI.</h3>
-            <p class="step-description">Provide detailed analytics to measure campaign effectiveness and identify
-              opportunities for future optimization.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="clients" class="page-section">
-    <div class="container">
-      <div class="section-header reveal-animation">
-        <h2 class="section-title">SUCCESS MARKETING</h2>
-        <p class="section-subtitle">Driving growth through strategic marketing solutions and innovative campaigns that
-          deliver measurable results.</p>
-      </div>
-      <div class="banner-container reveal-animation">
-        <div class="banner-row">
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">📈</div>
-              <div class="title">Digital Growth</div>
-              <div class="subtitle">Scale your business online</div>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">🎯</div>
-              <div class="title">Target Marketing</div>
-              <div class="subtitle">Reach the right audience</div>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">💡</div>
-              <div class="title">Creative Campaigns</div>
-              <div class="subtitle">Stand out from competition</div>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">🚀</div>
-              <div class="title">Brand Launch</div>
-              <div class="subtitle">Launch with impact</div>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">📊</div>
-              <div class="title">Data Analytics</div>
-              <div class="subtitle">Measure success precisely</div>
-            </div>
-          </div>
-        </div>
-        <div class="banner-row">
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">💼</div>
-              <div class="title">B2B Solutions</div>
-              <div class="subtitle">Business growth strategies</div>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">📱</div>
-              <div class="title">Social Media</div>
-              <div class="subtitle">Engage your community</div>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">🎨</div>
-              <div class="title">Brand Design</div>
-              <div class="subtitle">Visual identity creation</div>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">🔍</div>
-              <div class="title">SEO Optimization</div>
-              <div class="subtitle">Improve search rankings</div>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">✉️</div>
-              <div class="title">Email Marketing</div>
-              <div class="subtitle">Direct customer connection</div>
-            </div>
-          </div>
-        </div>
-        <div class="banner-row">
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">🌟</div>
-              <div class="title">Premium Strategy</div>
-              <div class="subtitle">Luxury brand positioning</div>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">🎬</div>
-              <div class="title">Video Content</div>
-              <div class="subtitle">Engaging visual stories</div>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">🤝</div>
-              <div class="title">Partnership</div>
-              <div class="subtitle">Strategic collaborations</div>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">💰</div>
-              <div class="title">ROI Focus</div>
-              <div class="subtitle">Maximize your investment</div>
-            </div>
-          </div>
-          <div class="banner-item">
-            <div class="content">
-              <div class="icon">🏆</div>
-              <div class="title">Success Stories</div>
-              <div class="subtitle">Proven track record</div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </section>
-
-  <section id="celebrity" class="page-section">
-    <div class="container">
-      <div class="section-header reveal-animation">
-        <h2 class="section-title">Celebrity Collaboration</h2>
-        <p class="section-subtitle">Partnering with world-renowned celebrities and influencers to create extraordinary
-          experiences and reach global audiences.</p>
-      </div>
-      <div class="banner-container">
-        <div class="banner-row">
-          <div class="banner-content" id="row1"></div>
-        </div>
-        <div class="banner-row">
-          <div class="banner-content" id="row2"></div>
-        </div>
-        <div class="banner-row">
-          <div class="banner-content" id="row3"></div>
-        </div>
-      </div>
-      <div class="collaboration-stats reveal-animation">
-        <div class="stat-item"><span class="stat-number">50+</span><span class="stat-label">Celebrity Partners</span>
-        </div>
-        <div class="stat-item"><span class="stat-number">2.5B</span><span class="stat-label">Combined Reach</span></div>
-        <div class="stat-item"><span class="stat-number">150+</span><span class="stat-label">Campaigns</span></div>
-        <div class="stat-item"><span class="stat-number">95%</span><span class="stat-label">Success Rate</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="testimonials" class="page-section">
-    <div class="container">
-      <div class="section-header reveal-animation">
-        <h2 class="section-title">What Our Clients Say</h2>
-        <p class="section-subtitle">Don't just take our word for it - hear from our satisfied clients.</p>
-      </div>
-      <div class="testimonial-card reveal-animation slide-from-left">
-        <p class="testimonial-text">"AdKulture's influencer strategy transformed our brand reach. Their authentic
-          collaborations increased our engagement by 400%."</p>
-        <div class="testimonial-author">Priya Sharma</div>
-        <div class="testimonial-role">Marketing Director, Fashion Forward</div>
-      </div>
-      <div class="testimonial-card reveal-animation slide-from-right">
-        <p class="testimonial-text">"The celebrity management team delivered exceptional results. Their industry
-          connections made our product launch a huge success."</p>
-        <div class="testimonial-author">Rajesh Kumar</div>
-        <div class="testimonial-role">Brand Manager, TechInnovate</div>
-      </div>
-    </div>
-  </section>
-
-  <footer id="contact" class="page-section">
-    <div class="container">
-      <div class="section-header reveal-animation">
-        <h2 class="section-title">Get In Touch</h2>
-        <p class="section-subtitle">We'd love to hear from you. Let's create something amazing together.</p>
-      </div>
-    </div>
-  </footer>
+  <!-- Smooth Scrollbar Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.8.4/smooth-scrollbar.js"
+    integrity="sha512-3f8C6NAQZv0YfwHFnjF231IIVcfZPnzL8EcHhNlzcoSRoEvC/iKDbtC+oYvL+0fRmEUMUYSvrZSE08TcRZYpgA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    // Initialize Smooth Scrollbar
+    Scrollbar.init(document.querySelector('#scroll-container'), {
+      damping: 0.09,  // Controls the smoothness
+    });
+  </script>
 
   <script>
-    const initializeApp = () => {
+    // 1. Initialize the scrollbar and get the instance
+    const scrollbar = Scrollbar.init(document.querySelector('#scroll-container'));
 
-      // --- 1. CACHE DOM ELEMENTS ---
-      const elements = {
-        navbar: document.getElementById('navbar'),
-        mobileToggle: document.getElementById('mobileToggle'),
-        navLinks: document.getElementById('navLinks'),
-        logo: document.getElementById('logo'),
-        backToTopBtn: document.getElementById('backToTop'),
-        scrollProgressBar: document.getElementById('scrollProgress'),
-        allRevealElements: document.querySelectorAll('.reveal-animation'),
-        allNavLinks: document.querySelectorAll('.nav-links a'),
-        allCards: document.querySelectorAll('.card'),
-        allCounters: document.querySelectorAll('.stat-number'),
-        serviceButtons: document.querySelectorAll('.service-btn'),
-      };
+    // 2. Select all anchor links that start with '#'
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
 
-      // --- 2. STATE ---
-      const state = { isTicking: false, logoIsScrolled: false, backToTopIsVisible: false };
+    // 3. Add a click listener to each link
+    anchorLinks.forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        // 4. Prevent the default browser jump
+        e.preventDefault();
 
-      // --- 3. LOGIC MODULES ---
+        // 5. Get the target element
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
 
-      const scrollModule = (() => {
-        const handleNavbar = (scrollTop) => elements.navbar.classList.toggle('scrolled', scrollTop > 50);
-        const handleLogo = (scrollTop) => {
-          const triggerPoint = window.innerWidth <= 768 ? 50 : 100;
-          if (scrollTop > triggerPoint !== state.logoIsScrolled) {
-            state.logoIsScrolled = !state.logoIsScrolled;
-            elements.logo.classList.toggle('scrolled', state.logoIsScrolled);
-          }
-        };
-        const handleBackToTop = (scrollTop) => {
-          if (scrollTop > 300 !== state.backToTopIsVisible) {
-            state.backToTopIsVisible = !state.backToTopIsVisible;
-            elements.backToTopBtn.classList.toggle('visible', state.backToTopIsVisible);
-          }
-        };
-        const updateProgress = () => {
-          const scrollTop = window.pageYOffset;
-          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          elements.scrollProgressBar.style.width = `${(scrollTop / docHeight) * 100}%`;
-        };
-        const revealElements = () => {
-          elements.allRevealElements.forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-              el.classList.add('revealed');
-            }
-          });
-        };
-
-        const onScroll = () => {
-          if (!state.isTicking) {
-            window.requestAnimationFrame(() => {
-              const scrollTop = window.pageYOffset;
-              handleNavbar(scrollTop); handleLogo(scrollTop); handleBackToTop(scrollTop);
-              updateProgress(); revealElements();
-              state.isTicking = false;
-            });
-            state.isTicking = true;
-          }
-        };
-        return { onScroll };
-      })();
-
-      const navigationModule = () => {
-        elements.mobileToggle.addEventListener('click', () => {
-          elements.mobileToggle.classList.toggle('active');
-          elements.navLinks.classList.toggle('active');
-        });
-        elements.navLinks.addEventListener('click', (e) => {
-          if (e.target.tagName === 'A') {
-            elements.mobileToggle.classList.remove('active');
-            elements.navLinks.classList.remove('active');
-          }
-        });
-        elements.allNavLinks.forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          });
-        });
-        elements.backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-      };
-
-      const interactiveElementsModule = () => {
-        elements.allCards.forEach(card => {
-          card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-            card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-          });
-        });
-      };
-
-      class ServicesModule {
-        constructor() { this.animatedCounters = new Set(); this.init(); }
-        init() { this.setupCounterAnimations(); this.setupModalFunctionality(); }
-        setupCounterAnimations() {
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting && !this.animatedCounters.has(entry.target)) {
-                this.animateCounter(entry.target);
-                this.animatedCounters.add(entry.target);
-              }
-            });
-          }, { threshold: 0.8 });
-          elements.allCounters.forEach(counter => observer.observe(counter));
-        }
-        animateCounter(counter) {
-          const target = parseInt(counter.dataset.target, 10); let current = 0; const increment = target / 100;
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) { current = target; clearInterval(timer); }
-            counter.textContent = Math.floor(current);
-          }, 20);
-        }
-        setupModalFunctionality() {
-          const data = {
-            influencer: { title: 'Influencer Marketing', desc: 'Connecting brands with trusted voices for authentic campaigns.' },
-            celebrity: { title: 'Celebrity Management', desc: 'Handling endorsements and brand collaborations with top talent.' },
-            production: { title: 'Ad Production', desc: 'End-to-end services from creative concepts to high-quality video.' },
-            events: { title: 'Event Management', desc: 'Expertly managing corporate events, concerts, and exclusive parties.' }
-          };
-          elements.serviceButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-              const service = data[btn.dataset.service];
-              if (service) alert(`${service.title}\n\n${service.desc}`);
-            });
+        // 6. If the target exists, scroll to it using the library's method
+        if (targetElement) {
+          scrollbar.scrollIntoView(targetElement, {
+            offsetTop: -60, // Optional: offset for the fixed navbar height
+            damping: 0.07   // Optional: override the global damping
           });
         }
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // The EXACT configuration from the original "NASA" animation
+      const particleConfig = {
+        particles: {
+          number: { value: 170, density: { enable: true, value_area: 3000 } },
+          color: { value: "#559" },
+          shape: {
+            type: "circle",
+            stroke: { width: 0, color: "#000000" },
+            polygon: { nb_sides: 6 },
+            image: { src: "img/github.svg", width: 100, height: 100 }
+          },
+          opacity: {
+            value: 1,
+            random: true,
+            anim: { enable: true, speed: 1, opacity_min: 0, sync: false }
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: { enable: false, speed: 4, size_min: 0.3, sync: false }
+          },
+          line_linked: {
+            enable: false,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 3,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: { enable: true, rotateX: 600, rotateY: 600 }
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: true, mode: "bubble" },
+            onclick: { enable: true, mode: "repulse" },
+            resize: true
+          },
+          modes: {
+            grab: { distance: 400, line_linked: { opacity: 1 } },
+            bubble: { distance: 250, size: 0, duration: 2, opacity: 0, speed: 3 },
+            repulse: { distance: 400, duration: 0.4 },
+            push: { particles_nb: 4 },
+            remove: { particles_nb: 2 }
+          }
+        },
+        retina_detect: true
+      };
+
+      // Find all elements with the class 'particle-section'
+      const particleSections = document.querySelectorAll('.particle-section');
+
+      // Loop over each section and initialize particles.js on its unique ID
+      particleSections.forEach(section => {
+        const sectionId = section.id;
+        if (sectionId) {
+          // Initialize particles.js with a deep copy of the config to prevent conflicts
+          particlesJS(sectionId, JSON.parse(JSON.stringify(particleConfig)));
+        }
+      });
+    });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // --- CACHE DOM ELEMENTS ---
+      const navbar = document.getElementById('navbar');
+      const logo = document.getElementById('logo');
+      const backToTopBtn = document.getElementById('backToTop');
+      const scrollProgressBar = document.getElementById('scrollProgress');
+      const mobileToggle = document.getElementById('mobileToggle');
+      const navLinks = document.getElementById('navLinks');
+      const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+      const animatedCards = document.querySelectorAll('.card');
+      const revealElements = document.querySelectorAll('.reveal-animation');
+      const processSteps = document.querySelectorAll('#theProcess .process-step');
+
+      // --- SCROLL-BASED FUNCTIONALITY ---
+
+      // Get the scrollbar instance
+      const scrollbar = Scrollbar.init(document.querySelector('#scroll-container'));
+
+      const handleScroll = (status) => {
+        const scrollY = status.offset.y;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollY / docHeight) * 100;
+
+
+
+
+        // Navbar & Logo scroll effect
+        if (scrollY > 50) {
+          navbar.classList.add('scrolled');
+          logo.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+          logo.classList.remove('scrolled');
+        }
+
+        // Back to top button visibility
+        if (scrollY > 300) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+
+        // Scroll progress bar
+        // scrollProgressBar.style.width = `${scrollPercent}%`;
+      };
+
+      // window.addEventListener('scroll', handleScroll, { passive: true });
+      scrollbar.addListener(handleScroll)
+      // backToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+      // backToTopBtn.addEventListener('click', () => {
+      //   window.location.href = '#';
+      //   console.log("back to top")
+      // });
+
+
+      // --- MOBILE NAVIGATION ---
+      mobileToggle.addEventListener('click', () => {
+        mobileToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+
+      navLinks.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A' && navLinks.classList.contains('active')) {
+          mobileToggle.classList.remove('active');
+          navLinks.classList.remove('active');
+        }
+      });
+
+      // --- REVEAL ON SCROLL (INTERSECTION OBSERVER) ---
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px', threshold: 0.1 });
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      // --- STATS COUNTER ANIMATION ---
+      const animateStat = (el) => {
+        const target = +el.dataset.target;
+        const duration = 3000;
+        const stepTime = Math.abs(Math.floor(duration / target));
+        let current = 0;
+        const timer = setInterval(() => {
+          current += 1;
+          el.textContent = current;
+          if (current >= target) {
+            clearInterval(timer);
+            el.textContent = target;
+          }
+        }, stepTime < 1 ? 1 : stepTime);
+      };
+
+      const statObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateStat(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      statNumbers.forEach(num => statObserver.observe(num));
+
+      // --- CARD MOUSE GLOW EFFECT ---
+      animatedCards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+
+      // --- INTERACTIVE PROCESS STEPS ---
+      processSteps.forEach(step => {
+        step.addEventListener('click', () => {
+          processSteps.forEach(s => s.querySelector('.step-circle').classList.remove('active'));
+          step.querySelector('.step-circle').classList.add('active');
+        });
+      });
+      if (processSteps.length > 0) {
+        processSteps[0].querySelector('.step-circle').classList.add('active');
       }
 
-      const initializeTimelineModule = () => {
-        const items = document.querySelectorAll('#timeline .timeline-item');
-        if (!items.length) return;
-        items.forEach((item, index) => {
-          item.style.transitionDelay = `${index * 0.2}s`;
-          const content = item.querySelector('.timeline-content');
-          const icon = item.querySelector('.timeline-icon');
-          item.addEventListener('mouseenter', () => {
-            content.style.transform = 'translateY(-10px)';
-            icon.style.transform = 'translate(-50%, -50%) scale(1.1)';
+      // --- DYNAMIC CELEBRITY BANNER ---
+      const celebrityItems = [
+        { avatar: 'JD', name: 'James Dale', field: 'Tech Influencer' },
+        { avatar: 'LV', name: 'Lena Voss', field: 'Lifestyle Vlogger' },
+        { avatar: 'AK', name: 'Alex Khan', field: 'Fitness Guru' },
+        { avatar: 'SR', name: 'Sofia Reyes', field: 'Fashion Icon' },
+        { avatar: 'MC', name: 'Mike Chen', field: 'Travel Explorer' },
+        { avatar: 'EB', name: 'Eva Banks', field: 'Finance Expert' },
+      ];
+
+      const createCelebrityCard = (item) => {
+        const el = document.createElement('div');
+        el.className = 'celebrity-card';
+        el.innerHTML = `
+                <div class="celebrity-avatar">${item.avatar}</div>
+                <div class="celebrity-info">
+                    <h3>${item.name}</h3>
+                    <p>${item.field}</p>
+                </div>`;
+        return el;
+      };
+
+      const row1 = document.getElementById('row1');
+      const row2 = document.getElementById('row2');
+      const row3 = document.getElementById('row3');
+
+      if (row1 && row2 && row3) {
+        const allRows = [row1, row2, row3];
+        // Duplicate items to ensure smooth loop
+        const fullRowItems = [...celebrityItems, ...celebrityItems, ...celebrityItems, ...celebrityItems];
+
+        allRows.forEach(row => {
+          fullRowItems.forEach(itemData => {
+            const itemElement = createCelebrityCard(itemData);
+            row.appendChild(itemElement);
           });
-          item.addEventListener('mouseleave', () => {
-            content.style.transform = 'translateY(0)';
-            icon.style.transform = 'translate(-50%, -50%) scale(1)';
-          });
         });
-      };
-
-      const initializeProcessModule = () => {
-        const steps = document.querySelectorAll('#theProcess .process-step');
-        if (!steps.length) return;
-        steps.forEach((step, index) => { step.style.transitionDelay = `${index * 0.2}s`; });
-        const circles = document.querySelectorAll('#theProcess .step-circle');
-        circles.forEach(circle => {
-          circle.addEventListener('click', function () {
-            circles.forEach(c => c.classList.remove('active'));
-            this.classList.add('active');
-          });
-        });
-      };
-
-      const initializeClientsModule = () => {
-        const section = document.getElementById('clients');
-        if (!section) return;
-        const bannerRows = section.querySelectorAll('.banner-row');
-        bannerRows.forEach(row => {
-          row.addEventListener('mouseenter', () => { row.style.animationPlayState = 'paused'; });
-          row.addEventListener('mouseleave', () => { row.style.animationPlayState = 'running'; });
-        });
-      };
-
-      const initializeCelebrityModule = () => {
-        const section = document.getElementById('celebrity');
-        if (!section) return;
-
-        const celebrityData = {
-          row1: [{ name: 'Emma Stone', cat: 'Actress', i: 'ES' }, { name: 'Ryan Reynolds', cat: 'Actor', i: 'RR' }, { name: 'Zendaya', cat: 'Actress', i: 'Z' }, { name: 'Chris Hemsworth', cat: 'Actor', i: 'CH' }, { name: 'Margot Robbie', cat: 'Actress', i: 'MR' }, { name: 'The Rock', cat: 'Actor', i: 'TR' }],
-          row2: [{ name: 'Taylor Swift', cat: 'Singer', i: 'TS' }, { name: 'Ed Sheeran', cat: 'Singer', i: 'ES' }, { name: 'Ariana Grande', cat: 'Singer', i: 'AG' }, { name: 'Drake', cat: 'Rapper', i: 'D' }, { name: 'Billie Eilish', cat: 'Singer', i: 'BE' }, { name: 'The Weeknd', cat: 'Singer', i: 'TW' }],
-          row3: [{ name: 'LeBron James', cat: 'Athlete', i: 'LJ' }, { name: 'Serena Williams', cat: 'Athlete', i: 'SW' }, { name: 'C. Ronaldo', cat: 'Athlete', i: 'CR' }, { name: 'Stephen Curry', cat: 'Athlete', i: 'SC' }, { name: 'Lewis Hamilton', cat: 'F1 Driver', i: 'LH' }, { name: 'Naomi Osaka', cat: 'Athlete', i: 'NO' }]
-        };
-
-        function createCard(celeb) {
-          return `<div class="celebrity-card"><div class="celebrity-avatar">${celeb.i}</div><div class="celebrity-info"><h3>${celeb.name}</h3><p>${celeb.cat}</p></div></div>`;
-        }
-
-        function populateRow(rowId, celebs) {
-          const row = document.getElementById(rowId);
-          if (row) {
-            const cardsHTML = celebs.map(createCard).join('');
-            row.innerHTML = cardsHTML + cardsHTML; // Duplicate for seamless scroll
-          }
-        }
-
-        populateRow('row1', celebrityData.row1);
-        populateRow('row2', celebrityData.row2);
-        populateRow('row3', celebrityData.row3);
-
-        const bannerRows = section.querySelectorAll('.banner-row');
-        bannerRows.forEach(row => {
-          const content = row.querySelector('.banner-content');
-          if (content) {
-            row.addEventListener('mouseenter', () => content.style.animationPlayState = 'paused');
-            row.addEventListener('mouseleave', () => content.style.animationPlayState = 'running');
-          }
-        });
-      };
-
-      // --- 4. INITIALIZE ALL MODULES ---
-      navigationModule();
-      interactiveElementsModule();
-      new ServicesModule();
-      initializeTimelineModule();
-      initializeProcessModule();
-      initializeClientsModule();
-      initializeCelebrityModule();
-
-      window.addEventListener('scroll', scrollModule.onScroll, { passive: true });
-      scrollModule.onScroll();
-
-    };
-
-    document.addEventListener('DOMContentLoaded', initializeApp);
-
+      }
+    });
   </script>
+
+
+
 
 </body>
 
