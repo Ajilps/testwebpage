@@ -57,6 +57,7 @@
 
     .container {
       max-width: 1200px;
+      /* max-width: 100vw; */
       margin: 0 auto;
       padding: 0 20px;
       position: relative;
@@ -284,8 +285,8 @@
       background: transparent;
       /* background: linear-gradient(135deg, #60c0e6, #5eb1e9); */
       /* background-color: linear-gradient(135deg, #60c0e6, #5eb1e9); */
-     /* background-color: #5fdff500; */
-      /* box-shadow: -10px -10px 1000px #5eb1e981; */
+      /* background-color: #5fdff510; */
+      box-shadow: -10px -10px 1000px #5eb1e981;
       z-index: 4000;
     }
 
@@ -1358,15 +1359,294 @@
     }
   </style>
 
+  <!-- loading screen -->
+  <style>
+    /* html.lenis {
+      height: auto;
+    }
+
+    .lenis.lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis-stopped {
+      overflow: hidden;
+    } */
+
+
+    /* --- Loader Styles (Mostly Unchanged) --- */
+    /* 
+      CHANGED: The loading container is now 'position: fixed' to overlay the content.
+      It also needs a high z-index to stay on top. 
+    */
+    .loading-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: #090a0f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 9999;
+      /* NEW: Add transition for the fade-out effect */
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    /* NEW: This class will be added by JS to hide the loader */
+    .loading-container.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      /* Prevents interaction when hidden */
+    }
+
+    .typing-text {
+      color: #ffffff;
+      font-size: clamp(1.2rem, 4vw, 2.5rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+      min-height: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1em;
+      background-color: #0097b2;
+      margin-left: 2px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      50% {
+        opacity: 1;
+      }
+
+      51%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .brand-icon {
+      width: clamp(70px, 16vw, 150px);
+      height: clamp(70px, 16vw, 150px);
+      margin: 0 auto;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 2s ease-out;
+    }
+
+    .brand-icon.show {
+      opacity: 1;
+      transform: scale(1);
+      animation: logoGlow 3s ease-in-out infinite;
+    }
+
+    .brand-icon img {
+      width: 100%;
+      filter: drop-shadow(0 0 20px rgba(0, 151, 178, 0.3));
+      transition: filter 0.5s ease;
+    }
+
+    @keyframes logoGlow {
+
+      0%,
+      100% {
+        filter: drop-shadow(0 0 20px rgba(0, 151, 178, 0.3));
+      }
+
+      50% {
+        filter: drop-shadow(0 0 40px rgba(0, 151, 178, 0.8)) drop-shadow(0 0 60px rgba(0, 151, 178, 0.4));
+      }
+    }
+
+    .progress-bar {
+      width: 80%;
+      max-width: 400px;
+      height: 2px;
+      background-color: rgba(255, 255, 255, 0.1);
+      margin: 2rem auto 0;
+      border-radius: 1px;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .progress-bar.show {
+      opacity: 1;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0097b2, #007a94);
+      width: 0%;
+      border-radius: 1px;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 151, 178, 0.5);
+    }
+
+    /* --- NEW: Main Content Styles --- */
+    /* 
+      This is the container for your actual page content.
+      It's hidden by default and will be faded in by JavaScript.
+    */
+    main.main-content {
+      background-color: #f0f2f5;
+      color: #333;
+      padding: 5rem 2rem;
+      opacity: 0;
+      /* Hidden by default */
+      visibility: hidden;
+      transition: opacity 0.8s ease 0.4s;
+      /* Fade in after the loader fades out */
+    }
+
+    main.main-content.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .content-section {
+      max-width: 800px;
+      margin: 0 auto 5rem;
+      /* Add space between sections */
+      text-align: center;
+    }
+
+    .content-section h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-family: 'Georgia', serif;
+    }
+
+    .content-section p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    .placeholder-image {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 2rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+
+  <!-- For auto typing animation  -->
+  <style>
+    #typewriter {
+      position: absolute;
+      top: 71%;
+      /* left: 38%; */
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      /* align-items: end; */
+    }
+
+    /* --- Basic Page Styling (for a nice presentation) --- */
+
+
+
+    /* .container {
+            text-align: left;
+            max-width: 90%;
+          } */
+
+    h1 {
+      /* font-size: clamp(1.5rem, 5vw, 3rem); */
+      /* Responsive font size */
+    }
+
+
+    /* --- THE IMPORTANT CURSOR STYLES --- */
+
+    /* This styles the cursor element that JavaScript creates */
+    .cursor {
+      /* IMPORTANT: Use display: inline-block to give the span width and height */
+      display: inline-block;
+
+      /* Give the cursor a solid color */
+      background-color: #34a1d3;
+      /* A bright green accent */
+
+      /* Define the cursor's size */
+      width: 10px;
+      height: 2rem;
+      /* Adjust to match the font size */
+
+      /* Add a little space between the text and the cursor */
+      margin-left: 8px;
+
+      /* IMPORTANT: This applies our blinking animation */
+      /* 'blink' is the animation name, '1s' is the duration, 'infinite' makes it loop forever */
+      animation: blink 1s infinite;
+    }
+
+    /* IMPORTANT: This is the animation definition */
+    /* It tells the 'blink' animation what to do over its 1-second duration */
+    @keyframes blink {
+
+      /* At the start and end of the animation, the cursor is fully visible */
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      /* Halfway through the animation, the cursor is completely invisible */
+      50% {
+        opacity: 0;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
 
 
+  <!-- ==================== LOADER ==================== -->
+  <div class="loading-container" id="loadingContainer">
+
+    <div class="loading-wrapper">
+      <div class="brand-icon" id="brandIcon">
+        <!-- Replaced with an inline SVG for simplicity in this example -->
+        <img src="../backup/iconWithShado.svg" alt="">
+      </div>
+
+      <div class="typing-text">
+        <span id="typed-text"></span>
+        <span class="cursor"></span>
+      </div>
+
+
+
+      <div class="progress-bar" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- <div class="scroll-indicator">
 
         <div class="scroll-progress" id="scrollProgress"></div>
       </div> -->
+
+
 
   <a href="#home"><button class="back-to-top" id="backToTop" aria-label="Back to Top"></button></a>
 
@@ -1401,6 +1681,14 @@
         <div id="brandName" class="particle-section"><img src="./newBrandName.svg" alt="Adkulture Brand Name">
         </div>
 
+
+
+        <!-- TYPEWRITER EFFECT container -->
+        <div class="typing-container" id="typewriter">
+          <!-- This is the target for our typewriter animation. -->
+          <!-- It's empty because JavaScript will fill it. -->
+          <h1 id="typewriter-heading"></h1>
+        </div>
 
     </div>
     </main>
@@ -1930,6 +2218,102 @@
     </footer>
   </div>
   </div>
+
+
+
+  <!-- loading screen animation -->
+  <!-- NEW: Include the Lenis library from a CDN -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/dist/lenis.min.js"></script>
+  <!-- load screen animation -->
+  <script>
+    // --- ELEMENT SELECTION ---
+    // const textToType = "We create influence that delivers results...";
+    const textToType = "Loading the future of digital influence....";
+    const typedTextElement = document.getElementById('typed-text');
+    const brandIcon = document.getElementById('brandIcon');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+
+    // NEW: Select the loader container and the main content container
+    const loadingContainer = document.getElementById('loadingContainer');
+    // const mainContent = document.getElementById('mainContent');
+
+    let currentIndex = 0;
+    let typingSpeed = 100; // milliseconds per character
+
+    // --- LOADER ANIMATION SEQUENCE (Mostly unchanged) ---
+    function typeText() {
+      if (currentIndex < textToType.length) {
+        typedTextElement.textContent += textToType.charAt(currentIndex);
+        currentIndex++;
+        setTimeout(typeText, typingSpeed);
+      } else {
+        setTimeout(showBrandIcon, 500);
+      }
+    }
+
+    function showBrandIcon() {
+      brandIcon.classList.add('show');
+      progressBar.classList.add('show');
+      setTimeout(animateProgress, 400);
+    }
+
+    // --- THE "HANDOFF" LOGIC ---
+    function animateProgress() {
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress += Math.random() * 15 + 5;
+
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(progressInterval);
+
+          // CHANGED: This is the crucial handoff point.
+          // Instead of fading out the body, we hide the loader and show the content.
+          setTimeout(showMainContent, 500);
+        }
+        progressFill.style.width = progress + '%';
+      }, 150);
+    }
+
+    // NEW: Function to hide the loader, show content, and initialize smooth scroll
+    function showMainContent() {
+      // 1. Hide the loader
+      loadingContainer.classList.add('hidden');
+
+      // 2. Show the main content
+      // mainContent.classList.add('visible');
+
+      // 3. Initialize the smooth scroll library (Lenis)
+      // This is done LAST, only when the content is visible and ready to be scrolled.
+      // initializeSmoothScroll();
+
+      // 4. (Optional but good practice) Remove the loader from the DOM after its transition ends.
+      loadingContainer.addEventListener('transitionend', () => {
+        loadingContainer.remove();
+      });
+    }
+
+    // NEW: Function to setup and run the Lenis smooth scroll
+    // function initializeSmoothScroll() {
+    //   const lenis = new Lenis();
+
+    //   function raf(time) {
+    //     lenis.raf(time);
+    //     requestAnimationFrame(raf);
+    //   }
+    //   requestAnimationFrame(raf);
+    // }
+
+
+    // --- SCRIPT INITIALIZATION ---
+    // Start the typing animation when the page loads
+    window.addEventListener('load', () => {
+      // No changes here, the sequence starts as before.
+      setTimeout(typeText, 500);
+    });
+  </script>
+
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
   <!-- Smooth Scrollbar Script -->
@@ -1943,6 +2327,55 @@
     });
   </script>
 
+  <!-- TYPEWRITER EFFECT effect -->
+  <script>
+    // Wait for the HTML document to be fully loaded before running the script.
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // --- Configuration ---
+      const typewriterElement = document.getElementById('typewriter');
+      const textToType = "We create influence that delivers results...";
+      const typingSpeed = 100; // Milliseconds per character
+      const erasingSpeed = 100;  // Milliseconds per character
+      const delayBetween = 2000; // Pause in ms after typing, before erasing
+
+      let charIndex = 0; // Tracks the current character position
+
+      // --- Typing Function ---
+      function type() {
+        if (charIndex < textToType.length) {
+          // Add the next character and the cursor to the element
+          typewriterElement.innerHTML = textToType.substring(0, charIndex + 1) + '<h1 class="cursor"></h1>';
+          charIndex++;
+          // Call this function again after the 'typingSpeed' delay
+          setTimeout(type, typingSpeed);
+        } else {
+          // Once finished typing, wait, then start erasing
+          setTimeout(erase, delayBetween);
+        }
+      }
+
+      // --- Erasing Function ---
+      function erase() {
+        if (charIndex > 0) {
+          // Remove the last character and add the cursor
+          typewriterElement.innerHTML = textToType.substring(0, charIndex - 1) + '<h1 class="cursor"></h1>';
+          charIndex--;
+          // Call this function again after the 'erasingSpeed' delay
+          setTimeout(erase, erasingSpeed);
+        } else {
+          // Once finished erasing, wait, then start typing again to create a loop
+          setTimeout(type, delayBetween / 2);
+        }
+      }
+
+      // --- Initial Call ---
+      // Start the animation cycle after a short initial delay (1.5 seconds)
+      setTimeout(type, 1500);
+    });
+  </script>
+
+  <!-- for auto scroll to target id's -->
   <script>
     // 1. Initialize the scrollbar and get the instance
     const scrollbar = Scrollbar.init(document.querySelector('#scroll-container'));
@@ -1971,6 +2404,7 @@
     });
   </script>
 
+  <!-- particle animation  -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
 
@@ -2045,13 +2479,14 @@
     });
   </script>
 
+  <!-- main script -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       // --- CACHE DOM ELEMENTS ---
       const navbar = document.getElementById('navbar');
       const logo = document.getElementById('logo');
       const backToTopBtn = document.getElementById('backToTop');
-      const scrollProgressBar = document.getElementById('scrollProgress');
+      // const scrollProgressBar = document.getElementById('scrollProgress');
       const mobileToggle = document.getElementById('mobileToggle');
       const navLinks = document.getElementById('navLinks');
       const statNumbers = document.querySelectorAll('.stat-number[data-target]');
@@ -2062,6 +2497,7 @@
       // --- SCROLL-BASED FUNCTIONALITY ---
 
       // Get the scrollbar instance
+      // this line because of using the smooth scroll bar 
       const scrollbar = Scrollbar.init(document.querySelector('#scroll-container'));
 
       const handleScroll = (status) => {
@@ -2093,7 +2529,8 @@
       };
 
       // window.addEventListener('scroll', handleScroll, { passive: true });
-      scrollbar.addListener(handleScroll)
+      scrollbar.addListener(handleScroll) // Instead of using eventListener use this addListener becaus of using the Smooth scroll bar. 
+
       // backToTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
       // backToTopBtn.addEventListener('click', () => {
       //   window.location.href = '#';
