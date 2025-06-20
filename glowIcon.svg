@@ -12,16 +12,16 @@
     <!-- First, get the blurred silhouette of the shape -->
     <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="shadowBlur"/>
     <!-- Create a solid white color... -->
-    <feFlood flood-color="white" result="whiteColor"/>
+    <feFlood flood-color="#6c93c4" result="whiteColor"/>
     <!-- ...and use the blur as a mask to create a white, blurred shape. -->
     <feComposite in="whiteColor" in2="shadowBlur" operator="in" result="whiteBlur"/>
     <!-- Finally, offset this new white blur to create the shadow effect. -->
-    <feOffset in="whiteBlur" dx="8" dy="8" result="offsetShadow"/>
+    <feOffset in="whiteBlur" dx="18" dy="8" result="offsetShadow"/>
 
     <!-- Step 2: Create the Glow (This part is unchanged) -->
-    <feGaussianBlur in="SourceAlpha" stdDeviation="12" result="glowBlur"/>
+    <!-- <feGaussianBlur in="SourceAlpha" stdDeviation="12" result="glowBlur"/>
     <feFlood flood-color="#6c93c4" flood-opacity="0.8" result="glowColor"/>
-    <feComposite in="glowColor" in2="glowBlur" operator="in" result="coloredGlow"/>
+    <feComposite in="glowColor" in2="glowBlur" operator="in" result="coloredGlow"/> -->
 
     <!-- Step 3: Merge all layers together (This part is unchanged) -->
     <feMerge>
