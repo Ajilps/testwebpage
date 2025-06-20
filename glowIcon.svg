@@ -6,21 +6,26 @@
    <path d="m337.25,516.43l860.75,0l0,467.25l-860.75,0l0,-467.25zm0,0" id="svg_1"/>
   </clipPath>
   
-  <!-- This is the combined filter for both shadow and glow -->
+  <!-- This is the combined filter with a WHITE shadow and blue glow -->
   <filter id="shadow-and-glow" x="-50%" y="-50%" width="200%" height="200%">
-    <!-- Step 1: Create the Shadow -->
+    <!-- Step 1: Create the WHITE Shadow -->
+    <!-- First, get the blurred silhouette of the shape -->
     <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="shadowBlur"/>
-    <feOffset in="shadowBlur" dx="18" dy="10" result="offsetShadow"/>
+    <!-- Create a solid white color... -->
+    <feFlood flood-color="white" result="whiteColor"/>
+    <!-- ...and use the blur as a mask to create a white, blurred shape. -->
+    <feComposite in="whiteColor" in2="shadowBlur" operator="in" result="whiteBlur"/>
+    <!-- Finally, offset this new white blur to create the shadow effect. -->
+    <feOffset in="whiteBlur" dx="8" dy="8" result="offsetShadow"/>
 
-    <!-- Step 2: Create the Glow -->
+    <!-- Step 2: Create the Glow (This part is unchanged) -->
     <feGaussianBlur in="SourceAlpha" stdDeviation="12" result="glowBlur"/>
-    <feFlood flood-color="#6c93c9" flood-opacity="0.8" result="glowColor"/>
+    <feFlood flood-color="#6c93c4" flood-opacity="0.8" result="glowColor"/>
     <feComposite in="glowColor" in2="glowBlur" operator="in" result="coloredGlow"/>
 
-    <!-- Step 3: Merge all layers together -->
-    <!-- The order here is important: bottom layer first, top layer last. -->
+    <!-- Step 3: Merge all layers together (This part is unchanged) -->
     <feMerge>
-      <feMergeNode in="offsetShadow"/> <!-- The shadow goes on the bottom -->
+      <feMergeNode in="offsetShadow"/> <!-- The white shadow goes on the bottom -->
       <feMergeNode in="coloredGlow"/>  <!-- The glow goes on top of the shadow -->
       <feMergeNode in="SourceGraphic"/> <!-- The original shape goes on top of everything -->
     </feMerge>
